@@ -7,6 +7,8 @@ function SearchInput({ changeInput, total }) {
     changeInput(value);
   }, []);
 
+  console.log("total", total);
+
   return (
     <div className={styles.inputWrapper}>
       <input
@@ -15,7 +17,7 @@ function SearchInput({ changeInput, total }) {
         placeholder="Search Github users"
         onChange={onChange}
       />
-      {total && <span className={styles.resultNum}>{total} found</span>}
+      {total > 0 && <span className={styles.resultNum}>{total} found</span>}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import githubApi from "../../api";
 import SearchTitle from "../../components/Search/title";
 import SearchInput from "../../components/Search/input";
 import SearchResult from "../../components/Search/result";
+import SearchError from "../../components/Search/error";
 
 function SearchUser() {
   const [inputValue, setInputValue] = useState("");
@@ -26,7 +27,7 @@ function SearchUser() {
           setResults({
             total: data.total_count,
             list: data.items,
-            error_message: "",
+            error_message: null,
           });
         })
         .catch(err => {
@@ -50,6 +51,7 @@ function SearchUser() {
         total={!debouncedValue ? null : results.total}
       />
       <SearchResult list={results.list} />
+      <SearchError error={results.error_message} />
     </div>
   );
 }

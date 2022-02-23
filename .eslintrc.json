@@ -1,5 +1,4 @@
-//  TODO config
 {
   "extends": ["eslint:recommended", "next/core-web-vitals"],
-  "rules": { "no-unused-vars": "warn" }
+  "rules": { "no-unused-vars": "warn", "react-hooks/exhaustive-deps": "off" }
 }
