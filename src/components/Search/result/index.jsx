@@ -1,9 +1,10 @@
+import { memo } from "react";
+
 import styles from "./styles.module.scss";
 
 import User from "../user";
 
 function SearchResult({ list }) {
-  console.log("list", list);
   if (list?.length) {
     return (
       <div
@@ -21,4 +22,4 @@ function SearchResult({ list }) {
   return null;
 }
 
-export default SearchResult;
+export default memo(SearchResult);

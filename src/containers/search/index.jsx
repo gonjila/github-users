@@ -43,6 +43,10 @@ function SearchUser() {
     }
   }, [debouncedValue]);
 
+  // TODO როცა 3ზე ნაკლები ასო იქნება დაწერილი მაშინ result არ უნდა გამოჩნდეს.
+  // TODO უნდა დაიწეროს loading როცა იტვირთება მონაცემები.
+  // XXX უნდა დაიწეროს typing როცა იკრიპება რამე.
+
   return (
     <div className={styles.search}>
       <SearchTitle />

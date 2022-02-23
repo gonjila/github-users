@@ -7,8 +7,6 @@ function SearchInput({ changeInput, total }) {
     changeInput(value);
   }, []);
 
-  console.log("total", total);
-
   return (
     <div className={styles.inputWrapper}>
       <input
