@@ -10,7 +10,7 @@ import SearchResult from "../../components/Search/result";
 
 function SearchUser() {
   const [inputValue, setInputValue] = useState("");
-  const [result, setResult] = useState({});
+  const [results, setResults] = useState({});
 
   const debouncedValue = useDebounce(inputValue, 500);
 
@@ -20,20 +20,17 @@ function SearchUser() {
 
   useEffect(() => {
     if (debouncedValue !== "" && debouncedValue.length > 3) {
+      setResults({});
       githubApi(debouncedValue)
         .then(data => {
-          // console.log("data.data", data);
-          setResult({
+          setResults({
             total: data.total_count,
             list: data.items,
             error_message: "",
           });
         })
-        .then(() => {
-          console.log("result", result);
-        })
         .catch(err => {
-          setResult({
+          setResults({
             total: null,
             list: [],
             error_message:
@@ -48,8 +45,11 @@ function SearchUser() {
   return (
     <div className={styles.search}>
       <SearchTitle />
-      <SearchInput changeInput={changeInput} total={result.total} />
-      <SearchResult />
+      <SearchInput
+        changeInput={changeInput}
+        total={!debouncedValue ? null : results.total}
+      />
+      <SearchResult list={results.list} />
     </div>
   );
 }

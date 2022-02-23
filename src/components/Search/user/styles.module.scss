@@ -1,0 +1,26 @@
+@import "../../../styles/variables.scss";
+
+.userWrapper {
+  width: 100%;
+  color: $bgc;
+  padding: 5px;
+  border-radius: 5px;
+  @include FlexBox(_, flex-start);
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+  &:hover {
+    background-color: $secondary_color;
+  }
+
+  img {
+    border-radius: 50%;
+  }
+
+  h3 {
+    margin: 0 0 0 15px;
+  }
+}

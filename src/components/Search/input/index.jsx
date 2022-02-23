@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 
 function SearchInput({ changeInput, total }) {
   const onChange = useCallback(e => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     changeInput(value);
   }, []);
 
