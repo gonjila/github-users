@@ -1,4 +1,4 @@
-$secondary_color: #c9d1d9;
+@import "../../styles/variables.scss";
 
 .footer {
   color: $secondary_color;
@@ -7,4 +7,5 @@ $secondary_color: #c9d1d9;
   font-size: 0.8rem;
   position: absolute;
   bottom: 10px;
+  left: 0;
 }

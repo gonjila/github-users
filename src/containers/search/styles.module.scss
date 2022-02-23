@@ -1,0 +1,9 @@
+@import "../../styles/variables.scss";
+
+.search {
+  @include FlexBox(column, flex-start);
+  width: 500px;
+  height: 500px;
+  color: $primary_color;
+  border: 1px solid red;
+}
