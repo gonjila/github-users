@@ -1,8 +1,15 @@
 @import "../../styles/variables.scss";
 
 .search {
-  @include FlexBox(column, flex-start);
+  color: $primary_color;
   width: 500px;
   height: 500px;
-  color: $primary_color;
+  margin: 0 15px;
+  @include FlexBox(column, flex-start);
+}
+
+@media (max-width: 530px) {
+  .search {
+    width: calc(100% - 30px);
+  }
 }

@@ -20,11 +20,17 @@ function SearchUser() {
   }, []);
 
   useEffect(() => {
-    if (debouncedValue !== "" && debouncedValue.length > 3) {
-      setResults({});
+    if (debouncedValue !== "" && debouncedValue.length > 2) {
+      setResults({
+        status: "loading",
+        total: null,
+        list: [],
+        error_message: null,
+      });
       githubApi(debouncedValue)
         .then(data => {
           setResults({
+            status: "success",
             total: data.total_count,
             list: data.items,
             error_message: null,
@@ -32,6 +38,7 @@ function SearchUser() {
         })
         .catch(err => {
           setResults({
+            status: "failure",
             total: null,
             list: [],
             error_message:
@@ -43,19 +50,18 @@ function SearchUser() {
     }
   }, [debouncedValue]);
 
-  // TODO როცა 3ზე ნაკლები ასო იქნება დაწერილი მაშინ result არ უნდა გამოჩნდეს.
-  // TODO უნდა დაიწეროს loading როცა იტვირთება მონაცემები.
-  // XXX უნდა დაიწეროს typing როცა იკრიპება რამე.
-
   return (
     <div className={styles.search}>
       <SearchTitle />
       <SearchInput
+        status={results.status}
         changeInput={changeInput}
-        total={!debouncedValue ? null : results.total}
+        total={debouncedValue.length < 3 ? null : results.total}
       />
-      <SearchResult list={results.list} />
-      <SearchError error={results.error_message} />
+      {debouncedValue.length > 2 && (
+        <SearchResult status={results.status} list={results.list} />
+      )}
+      <SearchError status={results.status} error={results.error_message} />
     </div>
   );
 }

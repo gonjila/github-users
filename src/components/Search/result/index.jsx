@@ -4,8 +4,19 @@ import styles from "./styles.module.scss";
 
 import User from "../user";
 
-function SearchResult({ list }) {
-  if (list?.length) {
+function SearchResult({ list, status }) {
+  if (status === "loading") {
+    return (
+      <div
+        className={styles.result}
+        style={{ visibility: list ? "visible" : "hidden" }}
+      >
+        Loading...
+      </div>
+    );
+  }
+
+  if (list?.length && status === "success") {
     return (
       <div
         className={styles.result}
